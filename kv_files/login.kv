@@ -1,0 +1,109 @@
+#:kivy 2.0.0
+
+
+<LoginScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [20, 50, 20, 20]
+        spacing: 15
+        canvas.before:
+            Color:
+                rgba: (0.96, 0.96, 0.96, 1)  # Background terang
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # Gunakan FloatLayout untuk menempatkan tombol Back di pojok kiri atas
+        FloatLayout:
+            size_hint_y: None
+            height: 50
+
+            MinimalButton:
+                text: 'Back'
+                size_hint: (0.2, 0.8)
+                pos_hint: {"x": 0, "top": 1}  # Posisi di pojok kiri atas
+                on_release: app.root.current = 'intro'
+
+    
+        Image:
+            source: 'assets/login.jpeg'
+            size_hint: (0.4, 0.1)
+            pos_hint: {"center_x": 0.5}
+
+        Label:
+            text: 'Login'
+            font_size: 28
+            color: (0, 0, 0, 1)
+            bold: True
+            halign: 'center'
+            size_hint_y: None
+            height: 40
+
+        MinimalTextInput:
+            id: login_email
+            hint_text: 'Email'
+            multiline: False
+            write_tab: False
+
+        MinimalTextInput:
+            id: login_password
+            hint_text: 'Password'
+            password: True
+            multiline: False
+            write_tab: False
+
+        MinimalButton:
+            text: 'Login'
+            on_press: root.login(login_email.text, login_password.text)
+
+        MinimalButton:
+            text: 'Daftar'
+            on_release: app.root.current = 'register'
+
+         # Social Login Options
+        BoxLayout:
+            size_hint_y: None
+            height: 50
+            spacing: 20
+            padding: [50, 0]
+            Image:
+                source: 'assets/google.jpeg'
+                pos_hint: {"center_x": 0.5}
+            Image:
+                source: 'assets/facebook.jpeg'
+                pos_hint: {"center_x": 0.5}
+
+<MinimalTextInput@TextInput>:
+    size_hint_y: None
+    height: 40
+    multiline: False
+    write_tab: False
+    background_normal: ''
+    padding: [10, 10]
+    font_size: 16
+    foreground_color: (0, 0, 0, 1)
+    hint_text_color: (0, 0, 0, 1)
+    cursor_color: (0.2, 0.6, 0.86, 1)
+
+    canvas.before:
+        Color:
+            rgba: (0, 0, 0, 1)
+        Line:
+            width: 1.5
+            rounded_rectangle: (self.x, self.y, self.width, self.height, 5)
+
+<MinimalButton@Button>:
+    background_normal: ''
+    background_color: (1, 0.8, 0.2, 1)
+    color: (0, 0, 0, 1)
+    font_size: 16
+    size_hint_y: None
+    height: 50
+    width: 200
+    canvas.before:
+        Color:
+            rgba: self.background_color
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [25, 25, 25, 25]

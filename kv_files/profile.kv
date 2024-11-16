@@ -1,0 +1,163 @@
+#:kivy 2.0.0
+
+<ProfileScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1  # Warna latar belakang putih
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # Header
+        BoxLayout:
+            size_hint_y: None
+            height: "120dp"
+            padding: [10, 10]
+            canvas.before:
+                Color:
+                    rgba: (1, 0.8, 0.2, 1)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [0, 0, 50, 50]
+
+            Label:
+                text: "Profil"
+                color: (0, 0, 0, 1)
+                font_size: "24sp"
+                bold: True
+
+            Button:
+                size_hint_x: None
+                width: '30dp'
+                text: "✏️"
+                color: 0, 0, 0, 1
+                background_color: 0, 0, 0, 0  # Transparan
+
+        # Bagian profil dengan gambar avatar dan nomor telepon
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: None
+            height: '150dp'
+            padding: '10dp'
+            spacing: '5dp'
+
+            Image:
+                source: 'assets/profile_image.jpeg'
+                size_hint: None, None
+                size: '80dp', '80dp'
+                pos_hint: {'center_x': 0.5}
+
+            Label:
+                text: "+62837762542"
+                font_size: '14sp'
+                color: 0.5, 0.5, 0.5, 1
+                halign: 'center'
+
+        # Daftar menu
+        BoxLayout:
+            orientation: 'vertical'
+            padding: '20dp'
+            spacing: '20dp'
+
+            Button:
+                text: "Pesan saya"
+                color: 0, 0, 0, 1
+                size_hint_y: None
+                height: '30dp'
+                background_color: 0, 0, 0, 0  # Transparent
+                canvas.before:
+                    Color:
+                        rgba: 0.9, 0.9, 0.9, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20, 20, 20, 20]  # Rounded corners
+
+            Button:
+                text: "Mulai jual"
+                color: 0, 0, 0, 1
+                size_hint_y: None
+                height: '30dp'
+                background_color: 0, 0, 0, 0  # Transparent
+                canvas.before:
+                    Color:
+                        rgba: 0.9, 0.9, 0.9, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20, 20, 20, 20]  # Rounded corners
+                on_release: root.go_to_toko()
+
+            Button:
+                text: "Tentang kami"
+                color: 0, 0, 0, 1
+                size_hint_y: None
+                height: '30dp'
+                background_color: 0, 0, 0, 0  # Transparent
+                canvas.before:
+                    Color:
+                        rgba: 0.9, 0.9, 0.9, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20, 20, 20, 20]  # Rounded corners
+                on_release: root.go_to_aboutus()
+
+            Button:
+                text: "Logout"
+                color: 0, 0, 0, 1
+                size_hint_y: None
+                height: '30dp'
+                background_color: 0, 0, 0, 0  # Transparent
+                canvas.before:
+                    Color:
+                        rgba: 0.9, 0.9, 0.9, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [20, 20, 20, 20]  # Rounded corners
+                on_release: root.open_logout_popup()
+
+         # Bottom NavBar
+        BoxLayout:
+            size_hint_y: None
+            height: "60dp"
+            spacing: 10
+            padding: [10, 10]
+            canvas.before:
+                Color:
+                    rgba: (1, 0.8, 0.2, 1)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [50, 50, 0, 0]
+
+            ImageButton:
+                source: 'assets/home.png'
+                size_hint_x: 1
+                on_press: root.go_to_home()
+
+            ImageButton:
+                source: 'assets/search.png'
+                size_hint_x: 1
+                on_press: root.go_to_search()
+
+            ImageButton:
+                source: 'assets/cart.png'
+                size_hint_x: 1
+                on_press: root.go_to_cart()
+
+            ImageButton:
+                source: 'assets/notification.png'
+                size_hint_x: 1
+                on_press: root.go_to_notification()
+
+            ImageButton:
+                source: 'assets/profile.png'
+                size_hint_x: 1
+                on_press: root.go_to_profile()
+
+          

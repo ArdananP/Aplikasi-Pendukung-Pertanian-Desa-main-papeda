@@ -1,0 +1,96 @@
+#:kivy 2.0.0
+<SearchScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        # Header dan Search Bar
+        BoxLayout:
+            size_hint_y: None
+            height: "100dp"
+            padding: [20, 20]
+            canvas.before:
+                Color:
+                    rgba: (1, 0.8, 0.2, 1)  # Warna kuning
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [0, 0, 50, 50]
+
+            Label:
+                text: "Searching"
+                font_size: "24sp"
+                bold: True
+                color: (0, 0, 0, 1)
+
+        # Grid untuk Produk
+        ScrollView:
+            do_scroll_x: False  # Hanya scroll vertical
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height 
+
+                # Search Input dan Button
+                TextInput:
+                    id: search_input
+                    hint_text: "Cari produk atau toko..."
+                    size_hint_y: None
+                    height: "40dp"
+                    background_normal: ''
+                    background_color: 1, 1, 1, 1
+                    multiline: False
+                    on_text_validate: root.search_products(search_input.text)
+
+                Button:
+                    text: "Cari"
+                    size_hint_y: None
+                    height: "40dp"
+                    on_release: root.search_products(search_input.text)  # Kirimkan text input ke fungsi
+
+                GridLayout:
+                    id: product_grid
+                    cols: 2
+                    row_default_height: "250dp"
+                    row_force_default: True
+                    spacing: "10dp"
+                    padding: [10, 10]
+
+              
+
+        # Bottom NavBar
+        BoxLayout:
+            size_hint_y: None
+            height: "60dp"
+            padding: [5, 10]  # Menghilangkan padding agar tombol memenuhi lebar layar
+            spacing: 0  # Menghilangkan jarak antar tombol
+            canvas.before:
+                Color:
+                    rgba: (1, 0.8, 0.2, 1)  # Warna kuning
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [50, 50, 0, 0]
+            
+            ImageButton:
+                source: 'assets/home.png'  # Ikon Home
+                on_press: root.go_to_home()
+                size_hint_x: 1 
+
+            ImageButton:
+                source: 'assets/search.png'  # Ikon Search
+                size_hint_x: 1 
+
+            ImageButton:
+                source: 'assets/cart.png'  # Ikon Cart
+                on_press: root.go_to_cart()
+                size_hint_x: 1 
+
+            ImageButton:
+                source: 'assets/notification.png'  # Ikon Notification
+                on_press: root.go_to_notification()
+                size_hint_x: 1 
+
+            ImageButton:
+                source: 'assets/profile.png'  # Ikon Profile
+                on_press: root.go_to_profile()
+                size_hint_x: 1 
